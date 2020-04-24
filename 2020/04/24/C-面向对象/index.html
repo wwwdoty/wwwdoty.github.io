@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>C++面向对象 | wwwdoty</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 内联函数 inine 用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗空间（栈内存）的问题。 在类body内定义的的函数，自动成为内联函数候选人。 在类定义的函数想成为内联函数候选人，用inline关键字定义。 最终是否成为内联函数由编译器决定，一般函数体内代码较简单的会成为内联函数。  2. 构造函数 constructor(ctor) 函数名同class名，不需要返回类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++面向对象">
+<meta property="og:url" content="http://yoursite.com/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="wwwdoty">
+<meta property="og:description" content="1. 内联函数 inine 用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗空间（栈内存）的问题。 在类body内定义的的函数，自动成为内联函数候选人。 在类定义的函数想成为内联函数候选人，用inline关键字定义。 最终是否成为内联函数由编译器决定，一般函数体内代码较简单的会成为内联函数。  2. 构造函数 constructor(ctor) 函数名同class名，不需要返回类型">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-24T13:08:10.000Z">
+<meta property="article:modified_time" content="2020-04-24T14:13:43.086Z">
+<meta property="article:author" content="WY">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="wwwdoty" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">wwwdoty</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-C-面向对象" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" class="article-date">
+  <time datetime="2020-04-24T13:08:10.000Z" itemprop="datePublished">2020-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C++面向对象
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-内联函数-inine"><a href="#1-内联函数-inine" class="headerlink" title="1. 内联函数 inine"></a>1. 内联函数 inine</h3><ol>
+<li>用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗空间（栈内存）的问题。</li>
+<li>在类body内定义的的函数，自动成为内联函数候选人。</li>
+<li>在类定义的函数想成为内联函数候选人，用<code>inline</code>关键字定义。</li>
+<li>最终是否成为内联函数由编译器决定，一般函数体内代码较简单的会<br>成为内联函数。</li>
+</ol>
+<h3 id="2-构造函数-constructor-ctor"><a href="#2-构造函数-constructor-ctor" class="headerlink" title="2. 构造函数 constructor(ctor)"></a>2. 构造函数 constructor(ctor)</h3><ol>
+<li>函数名同class名，不需要返回类型。</li>
+<li>特殊的初始化方式，使用<code>:</code>， 比在函数体内赋值快。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class complex</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">    complex (double r &#x3D; 0, double i &#x3D; 0) : re (r), im (i) &#123; &#125; </span><br><span class="line">private:</span><br><span class="line">    double re, im;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>构造函数可以有多个，即重载(overloading),但注意内容不要冲突。</li>
+<li>构造函数放在private区中，不能像通常方法那样创建对象让外界<br>调用构造函数。（设计模式——Singleton)</li>
+</ol>
+<h3 id="3-成员函数-member-functions"><a href="#3-成员函数-member-functions" class="headerlink" title="3. 成员函数 member functions"></a>3. 成员函数 member functions</h3><p>在类中必须声明成员函数的函数原型，即返回类型，函数名，形参表。 函数体可以在类中或类外定义。 类名::函数名   </p>
+<ol>
+<li>常量成员函数<br>如果成员函数中没有改变数据，建议在声明后函数体前加入<code>const</code>关键字，如果不加那么编译器会认为此函数可能会修改类的成员变量。<br>这时如果再用const创建对象则会编译失败。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">double real() const &#123;return re;&#125;</span><br></pre></td></tr></table></figure></li>
+<li>所有成员函数都有一个隐藏参数，this指针。谁调用了函数，就是默认<br>this指针指向谁。</li>
+</ol>
+<h3 id="4-参数传递-by-reference-by-value"><a href="#4-参数传递-by-reference-by-value" class="headerlink" title="4. 参数传递 by reference / by value"></a>4. 参数传递 by reference / by value</h3><ol>
+<li>函数参数传递，如果不需要改变参数值，建议使用const reference<br>减小开销。</li>
+<li>函数的返回值传递，一般也建议用reference。但当返回值是在函数内定义<br>的局部变量，就不能返回引用。因为以但函数调用结束，该局部变量会被销毁。<br>对于临时变量，也不能返回引用。<ul>
+<li>临时对象用“typename ()”创建，</li>
+</ul>
+</li>
+</ol>
+<h3 id="5-友元-friend"><a href="#5-友元-friend" class="headerlink" title="5. 友元 friend"></a>5. 友元 friend</h3><p>友元机制允许特定的非成员函数访问一个类的私有成员，用关键字<code>friend</code>声明，只能出现在类定义的内部。   </p>
+<ol>
+<li>相同类的各个实例对象互为友元，可以通过彼此的内部方法调用传<br>入参数的内部私有成员变量。</li>
+</ol>
+<p>###6. 操作符重载</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li><a href="https://github.com/harvestlamb/Cpp_houjie/blob/master/%E4%B8%8A%E7%AF%87/C%2B%2B%E9%AB%98%E7%BA%A7%E5%9F%B9%E8%AE%AD%E7%AC%94%E8%AE%B0%E4%B8%80.md" target="_blank" rel="noopener">https://github.com/harvestlamb/Cpp_houjie/blob/master/%E4%B8%8A%E7%AF%87/C%2B%2B%E9%AB%98%E7%BA%A7%E5%9F%B9%E8%AE%AD%E7%AC%94%E8%AE%B0%E4%B8%80.md</a></li>
+<li>C++面向对象高级编程视频，侯捷。</li>
+<li>《C++ Primer》</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" data-id="ck9ea3soz0000w4vm3ai11ehl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/22/HTTPS%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTPS相关内容</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/22/HTTPS%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">HTTPS相关内容</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/07/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 WY<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
