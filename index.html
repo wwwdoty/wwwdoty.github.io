@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+      <a class="article-title" href="/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象程序设计视频学习笔记</a>
     </h1>
   
 
@@ -86,7 +86,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-内联函数-inine"><a href="#1-内联函数-inine" class="headerlink" title="1. 内联函数 inine"></a>1. 内联函数 inine</h3><ol>
+        <h2 id="Part-I-Object-Oriented-Programming-OOP"><a href="#Part-I-Object-Oriented-Programming-OOP" class="headerlink" title="Part I Object Oriented Programming, OOP"></a>Part I Object Oriented Programming, OOP</h2><h3 id="1-内联函数-inine"><a href="#1-内联函数-inine" class="headerlink" title="1. 内联函数 inine"></a>1. 内联函数 inine</h3><ol>
 <li>用它替代C中表达式形式的宏定义,解决一些频繁调用的小函数大量消耗空间（栈内存）的问题。</li>
 <li>在类body内定义的的函数，自动成为内联函数候选人。</li>
 <li>在类定义的函数想成为内联函数候选人，用<code>inline</code>关键字定义。</li>
@@ -114,10 +114,89 @@
 <ol>
 <li>相同类的各个实例对象互为友元，可以通过彼此的内部方法调用传<br>入参数的内部私有成员变量。</li>
 </ol>
-<p>###6. 操作符重载</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
-<li><a href="https://github.com/harvestlamb/Cpp_houjie/blob/master/%E4%B8%8A%E7%AF%87/C%2B%2B%E9%AB%98%E7%BA%A7%E5%9F%B9%E8%AE%AD%E7%AC%94%E8%AE%B0%E4%B8%80.md" target="_blank" rel="noopener">https://github.com/harvestlamb/Cpp_houjie/blob/master/%E4%B8%8A%E7%AF%87/C%2B%2B%E9%AB%98%E7%BA%A7%E5%9F%B9%E8%AE%AD%E7%AC%94%E8%AE%B0%E4%B8%80.md</a></li>
-<li>C++面向对象高级编程视频，侯捷。</li>
+<h3 id="6-操作符重载"><a href="#6-操作符重载" class="headerlink" title="6. 操作符重载"></a>6. 操作符重载</h3><h3 id="7-拷贝构造和拷贝赋值函数"><a href="#7-拷贝构造和拷贝赋值函数" class="headerlink" title="7. 拷贝构造和拷贝赋值函数"></a>7. 拷贝构造和拷贝赋值函数</h3><p>带有指针成员的类，一定要自己写拷贝构造和拷贝赋值函数，否则只是浅拷贝，<br>会发生内存泄露。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class String</span><br><span class="line">&#123;</span><br><span class="line">    public:</span><br><span class="line">        String(const char* cstr &#x3D; 0);&#x2F;&#x2F; 构造函数</span><br><span class="line">        String(const String&amp; str);&#x2F;&#x2F; 拷贝构造</span><br><span class="line">        String&amp; operator&#x3D; (const String&amp; str); &#x2F;&#x2F; 拷贝赋值</span><br><span class="line">        ~String();&#x2F;&#x2F; 析构函数</span><br><span class="line"></span><br><span class="line">    private:</span><br><span class="line">        char* m_data;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">String s1(&quot;Hello&quot;);</span><br><span class="line">String s2(s1);&#x2F;&#x2F; 把s1复制给s2,调用拷贝构造</span><br><span class="line">String s2 &#x3D; s1;&#x2F;&#x2F; 调用拷贝赋值</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;拷贝构造</span><br><span class="line">inline String::String(const String&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    m_data &#x3D; new char[ strlen(str.m_data) + 1 ];</span><br><span class="line">    strcpy(m_data, str.m_data);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;拷贝赋值</span><br><span class="line">inline String::operator&#x3D;(const String&amp; str)</span><br><span class="line">&#123;</span><br><span class="line">    if(this &#x3D;&#x3D; &amp;str) return *this;&#x2F;&#x2F; 检测自我赋值</span><br><span class="line">    delete[] m_data;</span><br><span class="line">    m_data &#x3D; new char[ strlen(str.m_data) + 1 ];</span><br><span class="line">    strcpy(m_data, str.m_data);</span><br><span class="line">    return *this;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>拷贝赋值过程<br>先清空左边待被赋值对象，再创造出和右边一样大小的内存，再把右边赋值<br>给左边。   </li>
+<li>在重载“=”赋值运算符时需要检查自我赋值。如果不检查，在左右指向的<br>是同一对象的情况下赋值，第一步先删掉左边待被赋值对象，其实把右边<br>也删掉了，再企图访问右边，会产生不确定行为。</li>
+</ol>
+<h3 id="8-堆栈及对象生命期"><a href="#8-堆栈及对象生命期" class="headerlink" title="8. 堆栈及对象生命期"></a>8. 堆栈及对象生命期</h3><ol>
+<li><p>stack栈是存在于某作用域scope的一块内存空间memory space。例如<br>当调用函数，函数本身会形成一个stack来放置它接收的参数，及返回地址。<br>在函数本体内声明的任何变量，其所使用的内存块都取自上述栈。   </p>
+</li>
+<li><p>1 stack object的声明再作用域scope结束时结束，也被成为atuo object，<br>因为它会被自动清理，及析构函数被调用。   </p>
+</li>
+<li><p>2 static local object及static object，生命再作用域结束后仍存在，<br>直到整个程序结束。    </p>
+</li>
+<li><p>3 global object 生命也在整个程序结束后才结束。如c3变量（内存位置不清楚）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">class Complex &#123;...&#125;;</span><br><span class="line">...</span><br><span class="line">Complex c3(1, 2);</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>heap堆是指由操作系统提供的一块global内存空间，程序可动态分配<br>dynamic allocated从某中获得若干区块blocks。<br>heap object，如下变量p, 生命在delete之际结束。如果不delete，<br>作用域结束时，p所指的heap object对象仍存在，指针p的生命却已经结束。<br>作用域之外再看不到p,也就无法delete。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class Complex &#123;...&#125;;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    Complex* p &#x3D; new Complex;</span><br><span class="line">    ...</span><br><span class="line">    delete p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="9-操作new和delete"><a href="#9-操作new和delete" class="headerlink" title="9. 操作new和delete"></a>9. 操作new和delete</h3><ol>
+<li>new 先分配内存再调用构造函数(隐含this参数)</li>
+<li>delete 先调用析构函数，删除动态分配的部分，再释放内存，<br>删除指针。</li>
+<li>array new 一定要搭配 array delete，即<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String* p &#x3D; new String[3];</span><br><span class="line">...</span><br><span class="line">delete[] p;</span><br></pre></td></tr></table></figure>
+因为对于创建的对象是否是数组，编译器在分配内存时是不一样的，在数组<br>元素前会插入记录元素个数的部分，这样编译器就会调用析构函数相应的次数<br>如果只是用delete不加[]，只会调用一次析构函数删除对象第一个元素，剩下的<br>没有处理。</li>
+</ol>
+<h3 id="10-static"><a href="#10-static" class="headerlink" title="10. static"></a>10. static</h3><ol>
+<li>可以通过static关键字定义静态成员变量，静态成员函数。<br>成员函数通过this指针取到不同的成员变量，但静态成员函数没有this<br>pointer,只能处理静态数据。</li>
+<li>静态成员数据在类外要做一下定义。</li>
+</ol>
+<h3 id="11-类模板-class-template"><a href="#11-类模板-class-template" class="headerlink" title="11. 类模板 class template"></a>11. 类模板 class template</h3><p><code>template&lt;typename T&gt;</code><br>类中暂时不确定变量类型，可以在创建对象时再确认的变量类型可以<br>定义为T类型，创建对象时用classname<type> object定义即可。<br>或者说，某个类里，某些变量的类型可以抽出来任意令用户指定。</p>
+<h3 id="12-函数模板-function-template"><a href="#12-函数模板-function-template" class="headerlink" title="12. 函数模板 function template"></a>12. 函数模板 function template</h3><p>函数的返回对象类型，形参列表参数类型同类模板一样，定义的时候<br>在最开始加<code>template&lt;class T&gt;</code>,调用的时候正常使用不必指出实参<br>类型，编译器会进行参数推导。</p>
+<h3 id="13-复合-composition-表示-has-a"><a href="#13-复合-composition-表示-has-a" class="headerlink" title="13. 复合 composition 表示 has-a"></a>13. 复合 composition 表示 has-a</h3><p>表示有一个的关系 has a:  container has a component<br>比如STL源码中queue的实现是通过定义queue<T> c，利用c的相关操作函数完成, 这是两个类的一种复合关系。queue可以认为是容器适配器（adapter）</p>
+<ol>
+<li>复合关系下的构造和析构<ul>
+<li>构造由内而外，container先调用复合的component的默认构造函数，再执行自己的</li>
+<li>析构由外而内，container先执行自己，然后调用component的默认析构函数</li>
+</ul>
+</li>
+</ol>
+<h3 id="14-委托-delegation-表示-composition-by-reference"><a href="#14-委托-delegation-表示-composition-by-reference" class="headerlink" title="14. 委托 delegation 表示 composition by reference"></a>14. 委托 delegation 表示 composition by reference</h3><p>设计模式handle/body (pImpl, pointer to implentation)<br>有一个指向某个类的指针 </p>
+<h3 id="15-继承-Inheritance-表示-is-a"><a href="#15-继承-Inheritance-表示-is-a" class="headerlink" title="15. 继承 Inheritance 表示 is-a"></a>15. 继承 Inheritance 表示 is-a</h3><p>子类derived 是一个(is a) 父类base，继承了父类的数据，有public继承，private继承，protected继承</p>
+<ol>
+<li><p>继承关系下的构造和析构</p>
+<ul>
+<li>构造由内而外，derived的构造函数先调用父类base的构造函数，再执行自己的</li>
+<li>析构由外而内，derived的析构函数先执行自己，然后调用base的析构函数</li>
+</ul>
+</li>
+<li><p>base class 的析构函数必须是虚函数，否则会出现undefined behavior</p>
+</li>
+<li><p>子类继承了父类函数的调用权，可以通过子类的对象调用父类的函数</p>
+</li>
+<li><p>Inheritance+Composition关系下的构造和析构</p>
+<ul>
+<li>构造由内而外，derived的构造函数先调用父类base的构造函数， 然后调用component的构造函数，再执行自己的</li>
+<li>析构由外而内，derived的析构函数先执行自己，然后调用component的析构函数，再调用base的析构函数</li>
+</ul>
+</li>
+<li><p>delegation + Inheritance，设计模式 Composite， observer， prototype</p>
+</li>
+</ol>
+<h3 id="16-虚函数-Inheritance-with-virtual-functions"><a href="#16-虚函数-Inheritance-with-virtual-functions" class="headerlink" title="16. 虚函数 Inheritance with virtual functions"></a>16. 虚函数 Inheritance with virtual functions</h3><ol>
+<li>non-virtual 函数：你不希望derived class 重新定义(override，复写) 它.</li>
+<li>virtual 函数：你希望derived class 重新定义它，且你（父类？）对它已有默认定义。</li>
+<li>pure virtual 函数：你希望derived class 一定要重新定义它，你对它沒有默认定义。</li>
+<li>设计模式之一 template method</li>
+</ol>
+<h2 id="Part-II-C-Programming-and-Object-Model"><a href="#Part-II-C-Programming-and-Object-Model" class="headerlink" title="Part II C++ Programming, and Object Model"></a>Part II C++ Programming, and Object Model</h2><h3 id="1-转换函数-conversion-function？"><a href="#1-转换函数-conversion-function？" class="headerlink" title="1. 转换函数 conversion function？"></a>1. 转换函数 conversion function？</h3><h3 id="2-pointer-like-classes-关于智能指针？"><a href="#2-pointer-like-classes-关于智能指针？" class="headerlink" title="2. pointer-like classes, 关于智能指针？"></a>2. pointer-like classes, 关于智能指针？</h3><h3 id="3-pointer-like-classes-关于迭代器？"><a href="#3-pointer-like-classes-关于迭代器？" class="headerlink" title="3. pointer-like classes, 关于迭代器？"></a>3. pointer-like classes, 关于迭代器？</h3><h3 id="4-function-like-classes-仿函数？"><a href="#4-function-like-classes-仿函数？" class="headerlink" title="4. function-like classes, 仿函数？"></a>4. function-like classes, 仿函数？</h3><h3 id="5-成员模板member-template"><a href="#5-成员模板member-template" class="headerlink" title="5. 成员模板member template"></a>5. 成员模板member template</h3><ol>
+<li><p>模板里又包含模板，STL中构造函数常用，从而可以进行把子类对象拷贝给父类对象的操作。？？？</p>
+</li>
+<li><p>指针具有up-cast的性质，一个指向鱼类的指针，可以让他指向鲫鱼类的对象，智能指针为了实现up-cast，需要定义成员模板</p>
+</li>
+</ol>
+<h3 id="6-模板特化-specialization"><a href="#6-模板特化-specialization" class="headerlink" title="6. 模板特化 specialization"></a>6. 模板特化 specialization</h3><p>partial specialization偏特化  </p>
+<ol>
+<li>个数上的偏，将多个模板参数中的某个绑定成固定类型</li>
+<li>范围上的偏，将模板参数特别指定为某个类型</li>
+</ol>
+<h3 id="7-模板模板参数？"><a href="#7-模板模板参数？" class="headerlink" title="7. 模板模板参数？"></a>7. 模板模板参数？</h3><h3 id="8-对象模型：关于虚指针vptr和虚表vtbl"><a href="#8-对象模型：关于虚指针vptr和虚表vtbl" class="headerlink" title="8. 对象模型：关于虚指针vptr和虚表vtbl"></a>8. 对象模型：关于虚指针vptr和虚表vtbl</h3><h3 id="9-对象模型：关于this"><a href="#9-对象模型：关于this" class="headerlink" title="9. 对象模型：关于this"></a>9. 对象模型：关于this</h3><h3 id="10-对象模型：关于动态绑定dynamic-binding"><a href="#10-对象模型：关于动态绑定dynamic-binding" class="headerlink" title="10. 对象模型：关于动态绑定dynamic binding"></a>10. 对象模型：关于动态绑定dynamic binding</h3><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol>
+<li>C++面向对象程序设计视频，侯捷</li>
+<li><a href="https://github.com/harvestlamb/Cpp_houjie" target="_blank" rel="noopener">https://github.com/harvestlamb/Cpp_houjie</a></li>
 <li>《C++ Primer》</li>
 </ol>
 
@@ -127,6 +206,8 @@
       <a data-url="http://yoursite.com/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" data-id="ck9ea3soz0000w4vm3ai11ehl" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">C++面向对象</a></li></ul>
+
     </footer>
   </div>
   
@@ -217,55 +298,6 @@
 
 
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/07/hello-world/" class="article-date">
-  <time datetime="2020-04-07T10:11:00.980Z" itemprop="datePublished">2020-04-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/04/07/hello-world/" data-id="ck9beb78y0003r0vmdjvhbzl2" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
 </section>
@@ -279,7 +311,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag">C++面向对象</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li></ul>
     </div>
   </div>
 
@@ -289,7 +321,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a>
+      <a href="/tags/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" style="font-size: 10px;">C++面向对象</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a>
     </div>
   </div>
 
@@ -311,15 +343,11 @@
       <ul>
         
           <li>
-            <a href="/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象</a>
+            <a href="/2020/04/24/C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">C++面向对象程序设计视频学习笔记</a>
           </li>
         
           <li>
             <a href="/2020/04/22/HTTPS%E7%9B%B8%E5%85%B3%E5%86%85%E5%AE%B9/">HTTPS相关内容</a>
-          </li>
-        
-          <li>
-            <a href="/2020/04/07/hello-world/">Hello World</a>
           </li>
         
       </ul>
